@@ -7,9 +7,9 @@ function createGalleryMarkup(imagesCollections) {
   return imagesCollections
     .map(
       ({ description, original, preview }) =>
-        `<li><a class="gallery__item" href="${original}">
+        `<a class="gallery__item" href="${original}">
         <img class="gallery__image" src="${preview}" alt="${description}" />
-      </a></li>`
+      </a>`
     )
     .join("");
 }
@@ -19,5 +19,10 @@ function renderGalleryMarkup(container, markup) {
 }
 
 renderGalleryMarkup(galleryContainer, galleryImages);
+
+let gallery = new SimpleLightbox('.gallery a');
+gallery.on('show.simplelightbox', function () {
+	// Do something…
+});
 
 console.log(galleryItems);
