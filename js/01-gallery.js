@@ -41,12 +41,15 @@ function onGalleryImageClick(evt) {
   instance.show();
   const visible = instance.visible();
   if (visible) {
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") {
-        instance.close();
-      }
-    });
+    closeModalByEsc(instance);
   }
 }
 
+function closeModalByEsc(instance) {
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      return instance.close();
+    }
+  });
+}
 console.log(galleryItems);
