@@ -22,30 +22,31 @@ function createGalleryMarkup(imagesCollections) {
     .join("");
 }
 
-function renderGalleryMarkup(container, markup) {     
-    container.insertAdjacentHTML("beforeend", markup);  
+function renderGalleryMarkup(container, markup) {
+  container.insertAdjacentHTML("beforeend", markup);
 }
 
-renderGalleryMarkup(galleryContainer,galleryImages);
+renderGalleryMarkup(galleryContainer, galleryImages);
 
-galleryContainer.addEventListener('click', onGalleryImageClick);
+galleryContainer.addEventListener("click", onGalleryImageClick);
 
-function onGalleryImageClick(evt){  
-    evt.preventDefault();
-    if(evt.target.nodeName !== 'IMG'){
-      return;
-    }
-     const instance = basicLightbox.create(`
+function onGalleryImageClick(evt) {
+  evt.preventDefault();
+  if (evt.target.nodeName !== "IMG") {
+    return;
+  }
+  const instance = basicLightbox.create(`
       <img src="${evt.target.dataset.source}">
-  `).show();
- 
+  `);
+  instance.show();
+  const visible = instance.visible();
+  if (visible) {
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        instance.close();
+      }
+    });
   }
+}
 
-document.addEventListener('keydown', evt => {
-  if (evt.key === 'Escape') {
-    const instance = document.querySelector('.basicLightbox--visible');
-    instance.classList.remove('basicLightbox--visible');
-    instance.classList.add('basicLightbox--invisible')
-  }
-});
 console.log(galleryItems);

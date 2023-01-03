@@ -20,9 +20,13 @@ function renderGalleryMarkup(container, markup) {
 
 renderGalleryMarkup(galleryContainer, galleryImages);
 
-let gallery = new SimpleLightbox('.gallery a');
-gallery.on('show.simplelightbox', function () {
-	// Do something…
+let gallery = new SimpleLightbox(".gallery a", {
+  captions: true,
+  captionSelector: "img",
+  captionType: "attr",
+  captionsData: "alt",
+  captionPosition: "bottom",
+  captionDelay: 250,
 });
 
 console.log(galleryItems);
